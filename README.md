@@ -17,7 +17,7 @@ E então...
 ```
 $ cd ..
 $ mvn archetype:generate -DarchetypeGroupId=com.github.abdonia.domino \
-                         -DarchetypeArtifactId=domino-jogador-archetype \
+                         -DarchetypeArtifactId=domino-archetype-jogador \
                          -DarchetypeVersion=1.0-SNAPSHOT  
                          -DgroupId=[groupId do seu projeto]
                          -DartifactId=[artifactId do jogador sendo criado]
