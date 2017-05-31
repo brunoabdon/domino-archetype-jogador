@@ -30,4 +30,4 @@ $ cd myJogadorProject
 $ mvn compile exec:java
 ```
 ## Problemas?
-[Submeta um bug, dúvida ou sugestão](https://github.com/brunoabdon/domino-archetype-jogador/issues) pra esse projeto. Informações sobre o jogo de dominó ou sobre como implementar um jogador estão na página do projeto: https://github.com/brunoabdon/domino.
+Tendo algum problema, submeta um [bug, dúvida ou sugestão](https://github.com/brunoabdon/domino-archetype-jogador/issues) pra esse projeto. Informações valiosas sobre o jogo de dominó ou sobre como implementar um jogador estão na página do projeto Dominó: https://github.com/brunoabdon/domino.
