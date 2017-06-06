@@ -168,7 +168,7 @@ public class ${classeJogador} implements Jogador{
      * @return {@link Vontade#QUERO}.
      */
     @Override
-    public Vontade vontadeDeComecar() {
+    public Vontade getVontadeDeComecar() {
         this.ehPrimeiraPartida = false;
         return Vontade.QUERO;
     }
