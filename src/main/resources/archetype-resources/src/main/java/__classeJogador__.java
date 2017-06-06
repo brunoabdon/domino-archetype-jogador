@@ -21,14 +21,14 @@ public class ${classeJogador} implements Jogador{
     private boolean ehPrimeiraPartida;
 
     /**
-     * O Jogador precisa decidir entre as pedras que tem na mão que encaixam na
+     * O Jogador precisa decidir entre as pedras que tem na mï¿½o que encaixam na
      * mesa qual vai jogar.
-     * @param numeroDaEsquerda O {@link Numero} que está {@link 
+     * @param numeroDaEsquerda O {@link Numero} que estï¿½ {@link 
      * Mesa#getNumeroEsquerda() de um lado da mesa}.
-     * @param numeroDaDireita O {@link Numero} que está {@link 
+     * @param numeroDaDireita O {@link Numero} que estï¿½ {@link 
      * Mesa#getNumeroEsquerda() do outro lado da mesa}.
      * @param pedrasPossiveisDeJogar Subconjunto das pedras que o jogador tem na 
-     * mão que podem ser jogadas na mesa no momento.
+     * mï¿½o que podem ser jogadas na mesa no momento.
      * 
      * @return A jogada que o jogador vai fazer agora.
      */
@@ -44,8 +44,8 @@ public class ${classeJogador} implements Jogador{
     }
     
     /**
-     * A dupla deste jogador ganhou a partida anterior e ele é o jogador a 
-     * iniciar esta partida. Pode jogar qualquer {@link Pedra} que tenha na mão.  
+     * A dupla deste jogador ganhou a partida anterior e ele ï¿½ o jogador a 
+     * iniciar esta partida. Pode jogar qualquer {@link Pedra} que tenha na mï¿½o.  
      * 
      * @return Uma {@link Jogada} pra iniciar a partida.
      */
@@ -80,9 +80,9 @@ public class ${classeJogador} implements Jogador{
         
         final Jogada jogada;
         
-        if(mesa.taVazia()){
+        if(mesa.getPedras().isEmpty()){
             if(ehPrimeiraPartida){
-                //não tem opção.
+                //nï¿½o tem opï¿½ï¿½o.
                 jogada = jogaMaiorCarroca();
             } else{
                 //pode escolher uma pedra pra iniciar
@@ -90,7 +90,7 @@ public class ${classeJogador} implements Jogador{
             }
             
         } else {
-            //esse código pode ser melhorado usando streams....
+            //esse cï¿½digo pode ser melhorado usando streams....
             final Numero numeroDaEsquerda = mesa.getNumeroEsquerda();
             final Numero numeroDaDireita = mesa.getNumeroDireita();
             
@@ -115,7 +115,7 @@ public class ${classeJogador} implements Jogador{
         }
         
         /*
-          removendo da mão a pedra que vou jogar, pra não correr o risco de 
+          removendo da mï¿½o a pedra que vou jogar, pra nï¿½o correr o risco de 
           querer jogar ela de novo...
         */
         if(jogada != Jogada.TOQUE){
@@ -164,7 +164,7 @@ public class ${classeJogador} implements Jogador{
 
     
     /**
-     * Diz sempre que {@link Vontade#QUERO quer começar}.
+     * Diz sempre que {@link Vontade#QUERO quer comeï¿½ar}.
      * @return {@link Vontade#QUERO}.
      */
     @Override
@@ -175,12 +175,12 @@ public class ${classeJogador} implements Jogador{
 
     /**
      * Retorna uma {@link Jogada jogada} da maior {@link Pedra#isCarroca() 
-     * carroça} que este jogador tem na {@link #mao mão}.
+     * carroï¿½a} que este jogador tem na {@link #mao mï¿½o}.
      * 
-     * @return a maior {@link Pedra#isCarroca() carroça} que este jogador tem na
-     * {@link #mao mão}.
+     * @return a maior {@link Pedra#isCarroca() carroï¿½a} que este jogador tem na
+     * {@link #mao mï¿½o}.
      * 
-     * @throws IllegalStateException caso não tenha nenhuma carroça na mão.
+     * @throws IllegalStateException caso nï¿½o tenha nenhuma carroï¿½a na mï¿½o.
      */
     private Jogada jogaMaiorCarroca() {
         
@@ -197,7 +197,7 @@ public class ${classeJogador} implements Jogador{
             
             jogadaDaMaiorCarroca = Jogada.jogada(maiorCarroca,lado);
         } else {
-            throw new IllegalStateException("não tenho carroças");
+            throw new IllegalStateException("nï¿½o tenho carroï¿½as");
         }
         return jogadaDaMaiorCarroca;
     }
