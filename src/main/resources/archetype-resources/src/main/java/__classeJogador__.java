@@ -40,7 +40,7 @@ public class ${classeJogador} implements Jogador{
         Pedra pedra = ....; // escolhe uma pedra entre as possiveiss
         Lado lado = //diz se vai ser Lado.Esquerdo e Lado.Direito
                 
-        return Jogada.jogada(pedra, lado);
+        return Jogada.de(pedra, lado);
     }
     
     /**
@@ -53,7 +53,7 @@ public class ${classeJogador} implements Jogador{
         //escolher uma pedra da Collection "mao", e de que Lado vai jogar ela.
         Pedra pedra = ....
         
-        return Jogada.jogada(pedra, Lado.ESQUERDO);//lado tanto faz. mesa vazia.
+        return Jogada.de(pedra, Lado.ESQUERDO);//lado tanto faz. mesa vazia.
     }
 
     
@@ -141,7 +141,7 @@ public class ${classeJogador} implements Jogador{
                     EnumSet.of(pedra));
         } else {
             final Lado lado = pedraCabeNaDireita ? Lado.DIREITO : Lado.ESQUERDO;
-            jogada = Jogada.jogada(pedra, lado);
+            jogada = Jogada.de(pedra, lado);
         }
         return jogada;
     }
@@ -195,7 +195,7 @@ public class ${classeJogador} implements Jogador{
             final Pedra maiorCarroca = optional.get();
             final Lado lado = Lado.ESQUERDO; //qualquer um....
             
-            jogadaDaMaiorCarroca = Jogada.jogada(maiorCarroca,lado);
+            jogadaDaMaiorCarroca = Jogada.de(maiorCarroca,lado);
         } else {
             throw new IllegalStateException("n�o tenho carro�as");
         }
