@@ -13,7 +13,7 @@ import com.github.abdonia.domino.Numero;
 import com.github.abdonia.domino.Pedra;
 import com.github.abdonia.domino.Vontade;
 
-public class ${classeJogador} implements Jogador{
+public class ${classeJogador} implements Jogador {
 
     private Mesa mesa;
     private Collection<Pedra> mao;
@@ -21,14 +21,17 @@ public class ${classeJogador} implements Jogador{
     private boolean ehPrimeiraPartida;
 
     /**
-     * O Jogador precisa decidir entre as pedras que tem na m�o que encaixam na
+     * O Jogador precisa decidir entre as pedras que tem na mão que encaixam na
      * mesa qual vai jogar.
-     * @param numeroDaEsquerda O {@link Numero} que est� {@link 
+     * 
+     * @param numeroDaEsquerda O {@link Numero} que está {@link 
      * Mesa#getNumeroEsquerda() de um lado da mesa}.
-     * @param numeroDaDireita O {@link Numero} que est� {@link 
+     * 
+     * @param numeroDaDireita O {@link Numero} que está {@link 
      * Mesa#getNumeroEsquerda() do outro lado da mesa}.
+     * 
      * @param pedrasPossiveisDeJogar Subconjunto das pedras que o jogador tem na 
-     * m�o que podem ser jogadas na mesa no momento.
+     * mão que podem ser jogadas na mesa no momento.
      * 
      * @return A jogada que o jogador vai fazer agora.
      */
@@ -55,7 +58,6 @@ public class ${classeJogador} implements Jogador{
         
         return Jogada.de(pedra, Lado.ESQUERDO);//lado tanto faz. mesa vazia.
     }
-
     
     @Override
     public void sentaNaMesa(final Mesa mesa, final int cadeiraQueSentou) {
@@ -82,7 +84,7 @@ public class ${classeJogador} implements Jogador{
         
         if(mesa.getPedras().isEmpty()){
             if(ehPrimeiraPartida){
-                //n�o tem op��o.
+                //não tem opção.
                 jogada = jogaMaiorCarroca();
             } else{
                 //pode escolher uma pedra pra iniciar
@@ -90,16 +92,18 @@ public class ${classeJogador} implements Jogador{
             }
             
         } else {
-            //esse c�digo pode ser melhorado usando streams....
+            //esse código pode ser melhorado usando streams....
             final Numero numeroDaEsquerda = mesa.getNumeroEsquerda();
             final Numero numeroDaDireita = mesa.getNumeroDireita();
             
             final Collection<Pedra> pedrasPossiveisDeJogar = 
-                    filtraPedrasPossiveisDeJogar(numeroDaEsquerda, numeroDaDireita);
+                filtraPedrasPossiveisDeJogar(numeroDaEsquerda, numeroDaDireita);
             
             if(pedrasPossiveisDeJogar.isEmpty()){
+                //nenhuma pedra possível de jogar. toquei.
                 jogada = Jogada.TOQUE;
             } else if(pedrasPossiveisDeJogar.size() == 1){
+                //só tem uma possível. vai ela memso..
                 jogada = 
                     fazJogaComUnicaPedraJogavel(
                         numeroDaEsquerda, 
@@ -107,17 +111,18 @@ public class ${classeJogador} implements Jogador{
                         pedrasPossiveisDeJogar.iterator().next());
                 
             } else {
-                jogada = escolheJogada(
-                            numeroDaEsquerda, 
-                            numeroDaDireita, 
-                            pedrasPossiveisDeJogar);
+                //algumas pedras possíveis. vamos usar alguma estratégia...
+                jogada = 
+                    escolheJogada(
+                        numeroDaEsquerda, 
+                        numeroDaDireita, 
+                        pedrasPossiveisDeJogar
+                    );
             }
         }
         
-        /*
-          removendo da m�o a pedra que vou jogar, pra n�o correr o risco de 
-          querer jogar ela de novo...
-        */
+        //removendo da mão a pedra que vou jogar, pra não correr o risco de 
+        //querer jogar ela de novo...
         if(jogada != Jogada.TOQUE){
             this.mao.remove(jogada.getPedra());
         }
@@ -135,10 +140,12 @@ public class ${classeJogador} implements Jogador{
         final boolean pedraCabeNaDireita = pedra.temNumero(numeroDaDireita);
 
         if(pedraCabeNaEsquerda && pedraCabeNaDireita){
-            jogada = escolheJogada(
+            jogada = 
+                escolheJogada(
                     numeroDaEsquerda,
                     numeroDaDireita,
-                    EnumSet.of(pedra));
+                    EnumSet.of(pedra)
+                );
         } else {
             final Lado lado = pedraCabeNaDireita ? Lado.DIREITO : Lado.ESQUERDO;
             jogada = Jogada.de(pedra, lado);
@@ -161,26 +168,27 @@ public class ${classeJogador} implements Jogador{
         }
         return pedrasPossiveisDeJogar;
     }
-
     
     /**
-     * Diz sempre que {@link Vontade#QUERO quer come�ar}.
+     * Diz sempre que {@link Vontade#QUERO quer começar}.
+     * 
      * @return {@link Vontade#QUERO}.
      */
     @Override
     public Vontade getVontadeDeComecar() {
+        //a partir de agora, já sei que não é mais a primeira partida.
         this.ehPrimeiraPartida = false;
         return Vontade.QUERO;
     }
 
     /**
      * Retorna uma {@link Jogada jogada} da maior {@link Pedra#isCarroca() 
-     * carro�a} que este jogador tem na {@link #mao m�o}.
+     * carroça} que este jogador tem na {@link #mao mão}.
      * 
-     * @return a maior {@link Pedra#isCarroca() carro�a} que este jogador tem na
-     * {@link #mao m�o}.
+     * @return a maior {@link Pedra#isCarroca() carroça} que este jogador tem na
+     * {@link #mao mão}.
      * 
-     * @throws IllegalStateException caso n�o tenha nenhuma carro�a na m�o.
+     * @throws IllegalStateException caso não tenha nenhuma carroça na mão.
      */
     private Jogada jogaMaiorCarroca() {
         
