@@ -184,21 +184,18 @@ public class ${classeJogador} implements Jogador{
      */
     private Jogada jogaMaiorCarroca() {
         
-        final Jogada jogadaDaMaiorCarroca;
-        
-        final Optional<Pedra> optional = 
-            this.mao.parallelStream()
-                    .filter(Pedra::isCarroca)
-                    .max(Pedra::compareTo);
-        
-        if(optional.isPresent()){
-            final Pedra maiorCarroca = optional.get();
-            final Lado lado = Lado.ESQUERDO; //qualquer um....
-            
-            jogadaDaMaiorCarroca = Jogada.de(maiorCarroca,lado);
-        } else {
-            throw new IllegalStateException("n�o tenho carro�as");
-        }
-        return jogadaDaMaiorCarroca;
+        return
+            //pegue as pedras da mão...
+            this.mao.stream()
+                //deixe só as que forem carroça...
+                .filter(Pedra::isCarroca)
+                //pegue a maior dessas aí (se tiver alguma...)
+                .max(Pedra::compareTo)
+                //cria dessa pedra (se tiver ela) uma jogadas dela na esquerda.
+                .map(p -> Jogada.de(p, Lado.ESQUERDO))
+                //e se não tiver levante um erro.
+                .orElseThrow(
+                    () -> new IllegalStateException("não tenho carroças")
+                );
     }
 }
